@@ -14,7 +14,7 @@ runEvents();
 function runEvents() {
     todoAddForm.addEventListener("submit",addTodo);
     document.addEventListener("DOMContentLoaded",pageLoaded); //when the page is loaded
-    listCardBody.addEventListener("click",removeTodoToUI)
+    listCardBody.addEventListener("click",removeTodoToUI);
 }
 
 function pageLoaded() {
@@ -26,11 +26,26 @@ function pageLoaded() {
 
 function removeTodoToUI(e) {
     if(e.target.className === "fa fa-remove"){
+        //deleted screen
         const todo = e.target.parentElement.parentElement;
         console.log(todo);
         todo.remove();
+
+        //deletede storage
+        removeTodoToStorage(todo.textContent);
+        
         showAlert("success","Todo deleted successfully")
     }
+}
+
+function removeTodoToStorage(removeTodo) {
+    checkTodosFromStorage();
+    todos.forEach(function (todo,index) {
+       if(removeTodo === todo){
+        todos.splice(index,1); //Finds the index of the value equal to the if condition and deletes 1 of them
+       } 
+    });
+    localStorage.setItem("todos",JSON.stringify(todos));
 }
 
 function addTodo(e) {
