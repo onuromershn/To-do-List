@@ -14,6 +14,7 @@ runEvents();
 function runEvents() {
     todoAddForm.addEventListener("submit",addTodo);
     document.addEventListener("DOMContentLoaded",pageLoaded); //when the page is loaded
+    listCardBody.addEventListener("click",removeTodoToUI)
 }
 
 function pageLoaded() {
@@ -21,6 +22,15 @@ function pageLoaded() {
     todos.forEach(function(todo){
         addTodoUI(todo);
     });
+}
+
+function removeTodoToUI(e) {
+    if(e.target.className === "fa fa-remove"){
+        const todo = e.target.parentElement.parentElement;
+        console.log(todo);
+        todo.remove();
+        showAlert("success","Todo deleted successfully")
+    }
 }
 
 function addTodo(e) {
