@@ -18,9 +18,9 @@
         <div class="row">
             <div class="card w-100 mt-3">
                 <div class="card-header">
-                    <h5 class="card-title">Todo List Sayfası </h5>
+                    <h5 class="card-title">Add Todo </h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="addCardBody">
                     <form id="todoAddForm" class="mt-2">
                         <input type="text" class="form-control mt-2" id="todoName" aria-describedby="todo"
                             placeholder="Todo Giriniz">
@@ -28,14 +28,16 @@
                         <button id="todoAddButton" type="submit" class="btn btn-primary mt-4 btn-sm">
                             Todo Ekleyin</button>
                     </form>
-                   
-                    <hr>
 
                 </div>
-
-                <hr />
-
-                <div class="card-body">
+            </div>
+        </div>
+        <div class="row">
+            <div class="card w-100 mt-3">
+                <div class="card-header">
+                    <h5 class="card-title">Todo List </h5>
+                </div>
+                <div class="card-body" id="listCardBody">
                     <h5 class="card-title">Todo Listesi</h5>
                     <form name="form2" id="todoListForm">
                         <input id="todoSearch" type="text" class="form-control mt-3" placeholder="Todo Arayınız">
@@ -43,7 +45,13 @@
                     </form>
 
                     <ul class="list-group">
-                        
+                        <!--
+                        <li class="list-group-item d-flex justify-content-between">Todo 1
+                            <a href="#" class="delete-item">
+                                <i class="fa fa-remove"></i>
+                            </a>
+                        </li>
+                    -->
                       </ul>
 
                         <a href="#" id="clearButton" class="btn btn-primary btn-sm mt-3">Tüm Todoları Temizle</a>
