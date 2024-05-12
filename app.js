@@ -7,6 +7,8 @@ const todoList = document.querySelector('.list-group');
 const listCardBody = document.querySelector('#listCardBody');
 const clearAllTodoButton = document.querySelector('#clearButton');
 
+let todos = [];
+
 runEvents();
 
 function runEvents() {
@@ -21,10 +23,9 @@ function addTodo(e) {
     }else {
         //add todo to UI
         addTodoUI(inputText);
+        //add todo to storage
+        addTodoStorage(inputText);
     }
-    
-    //add todo to storage
-
 
     e.preventDefault(); //We prevented it from redirecting to a different page
 }
@@ -48,4 +49,18 @@ function addTodoUI(newTodo) {
 
     todoNameAddInput.value = "";
 
+}
+
+function addTodoStorage(newTodo) {    
+    checkTodosFromStorage();
+    todos.push(newTodo);
+    localStorage.setItem("todos",JSON.stringify(todos));
+}
+
+function checkTodosFromStorage() {
+    if (localStorage.getItem("todos") === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
 }
