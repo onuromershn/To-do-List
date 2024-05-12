@@ -19,12 +19,14 @@ function addTodo(e) {
 
     const inputText = todoNameAddInput.value.trim();
     if(inputText == null || inputText == ""){
-        alert('Please enter a value');
+        showAlert("warning","Please enter a value!")
     }else {
         //add todo to UI
         addTodoUI(inputText);
         //add todo to storage
         addTodoStorage(inputText);
+        //show alert
+        showAlert("success","Added to Todo list")
     }
 
     e.preventDefault(); //We prevented it from redirecting to a different page
@@ -63,4 +65,17 @@ function checkTodosFromStorage() {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
+}
+
+function showAlert(type, message) {
+    const div = document.createElement("div");
+
+    div.className = "alert alert-"+type + " mt-3";
+    div.textContent = message;
+
+    addCardBody.append(div);
+
+    setTimeout(function(){
+        div.remove();
+    },2500);
 }
