@@ -13,6 +13,14 @@ runEvents();
 
 function runEvents() {
     todoAddForm.addEventListener("submit",addTodo);
+    document.addEventListener("DOMContentLoaded",pageLoaded); //when the page is loaded
+}
+
+function pageLoaded() {
+    checkTodosFromStorage();
+    todos.forEach(function(todo){
+        addTodoUI(todo);
+    });
 }
 
 function addTodo(e) {
