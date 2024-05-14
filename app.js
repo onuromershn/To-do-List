@@ -6,6 +6,7 @@ const addCardBody = document.querySelector('#addCardBody');
 const todoList = document.querySelector('.list-group');
 const listCardBody = document.querySelector('#listCardBody');
 const clearAllTodoButton = document.querySelector('#clearButton');
+const filterInput = document.querySelector('#todoSearch');
 
 let todos = [];
 
@@ -16,6 +17,7 @@ function runEvents() {
     document.addEventListener("DOMContentLoaded",pageLoaded); //when the page is loaded
     listCardBody.addEventListener("click",removeTodoToUI);
     clearAllTodoButton.addEventListener("click",allTodosDelete);
+    filterInput.addEventListener("keyup",filter);
 }
 
 function pageLoaded() {
@@ -23,6 +25,24 @@ function pageLoaded() {
     todos.forEach(function(todo){
         addTodoUI(todo);
     });
+}
+
+function filter(e) {
+    const filterValue = e.target.value.toLowerCase().trim();
+    const allTodos = document.querySelectorAll(".list-group-item");
+
+    if(allTodos.length>0){
+        allTodos.forEach(function(todo) {
+            //actually in here, todo == li 
+            if(todo.textContent.toLowerCase().trim().includes(filterValue)){
+                todo.setAttribute("style","display:block");
+            }else {
+                todo.setAttribute("style","display:none !important"); //we use important because of the bootstrap class
+            }
+        });
+    }else {
+        showAlert("warning","There must be at least 1 todo to filter.")
+    }
 }
 
 function allTodosDelete() {
